@@ -1,0 +1,74 @@
+body{
+	background-color: #D3E9F2;
+}
+
+.bg-primer{
+	background-color: #A2D2F4;
+}
+
+.bg-sekunder{
+	background-color: #D3E9F2;
+}
+
+.bg-informasi-user{
+	background-color: #8EA7B9;
+}
+
+.primer{
+	color: #A2D2F4;
+}
+
+
+.sekunder{
+	color: #D3E9F2;
+}
+
+.nav-link{
+	color: #000;
+	transition-duration: 0.3s;
+}
+
+.nav-link:hover{
+	color: #777;
+	transition-duration: 0.3s;
+}
+
+#LoginKarrir{
+	padding-top: 50px;
+}
+
+.form-login{
+	border-radius: 30px;
+}
+
+.form-login .form-control{
+	border-radius: 20px;
+	background-color: #D3E9F2;
+	border: none;
+}
+
+.btn-primer{
+	background-color: #A2D2F4;
+	border-radius: 20px;
+}
+
+.opacity{
+	opacity: 70%;
+}
+
+#DaftarKarrir{
+	padding-top: 50px;
+}
+
+.btn-search{
+	border-radius: 20px;
+}
+
+.lowongan-logo{
+	width: 80px;
+}
+
+.lowongan-text{
+	font-size: 11px;
+	margin-bottom: 5px;
+}

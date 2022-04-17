@@ -20,3 +20,14 @@ Route::get('/karrir/profile', function () {
     return view('profile_karrir');
 });
 
+Route::get('/karrir/daftar', function () {
+    return view('daftar_karrir');
+});
+
+
+// Provider
+
+Route::get('/provider/daftar', function () {
+    return view('daftar_provider');
+});
+

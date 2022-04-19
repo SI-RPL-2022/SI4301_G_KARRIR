@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 // Karrir
 
-Route::get('/karrir/profile', function () {
-    return view('profile_karrir');
+Route::get('/', function () {
+    return view('home_karrir',['login' => 'true']);
 });
 
+// Provider
+Route::get('/provider', function () {
+    return view('home_provider',['login' => 'true']);
+});

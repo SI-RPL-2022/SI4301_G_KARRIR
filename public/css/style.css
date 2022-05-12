@@ -72,3 +72,7 @@ body{
 	font-size: 11px;
 	margin-bottom: 5px;
 }
+
+#Login .form-check{
+	font-size: 14px;
+}

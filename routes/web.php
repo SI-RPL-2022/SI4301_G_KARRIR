@@ -19,4 +19,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/karrir/profile', function () {
     return view('profile_karrir');
 });
-

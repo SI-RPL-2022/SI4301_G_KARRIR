@@ -36,3 +36,24 @@ Route::get('/', function () {
 });
 Route::get('/karrir/profile', [UserController::class, 'profile']);
 Route::post('/karrir/profile/{id}', [UserController::class, 'proses_update']);
+
+Route::post('/upload/resume', [UploadController::class, 'upload_resume']);
+Route::get('/download/resume', [UploadController::class, 'download_resume']);
+
+Route::post('/upload/organisasi', [UploadController::class, 'upload_organisasi']);
+Route::get('/download/organisasi', [UploadController::class, 'download_organisasi']);
+
+Route::post('/upload/sertifikasi', [UploadController::class, 'upload_sertifikasi']);
+Route::get('/download/sertifikasi', [UploadController::class, 'download_sertifikasi']);
+
+Route::post('/upload/portofolio', [UploadController::class, 'upload_portofolio']);
+Route::get('/download/portofolio', [UploadController::class, 'download_portofolio']);
+
+
+// Provider
+Route::get('/provider', [ProviderController::class, 'index']);
+Route::get('/provider/lowongan', [ProviderController::class, 'create_lowongan']);
+
+Route::get('/provider/profile', function(){
+    return view('profile_provider');
+});

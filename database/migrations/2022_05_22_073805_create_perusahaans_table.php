@@ -13,23 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('perusahaans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('nama_perusahaan');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('roles')->default('User');
-            $table->string('status');
             $table->bigInteger('telepon');
             $table->string('alamat')->nullable();
-            $table->date('tanggal_lahir')->nullable();
-            $table->string('kelamin')->nullable();
-            $table->string('cv')->nullable();
-            $table->string('organisasi')->nullable();
-            $table->string('sertifikasi')->nullable();
-            $table->string('portofolio')->nullable();
+            $table->string('tentang_kami')->nullable();
+            $table->string('visi')->nullable();
+            $table->string('misi')->nullable();
             $table->string('foto')->nullable();
+            $table->string('industri')->nullable();
+            $table->integer('verifikasi')->default('1');
             $table->timestamps();
+
         });
     }
 
@@ -40,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('perusahaans');
     }
 };

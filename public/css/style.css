@@ -42,7 +42,13 @@ body{
 }
 
 .form-login .form-control{
-	border-radius: 20px;
+	border-radius: 10px;
+	background-color: #D3E9F2;
+	border: none;
+}
+
+.form-login .form-select{
+	border-radius: 10px;
 	background-color: #D3E9F2;
 	border: none;
 }
@@ -75,4 +81,39 @@ body{
 
 #Login .form-check{
 	font-size: 14px;
+}
+
+.foto-profile{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+}
+
+.fileInput{
+  display: none;
+}
+#icon{
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.sidebar-link{
+	text-decoration: none;
+	color: rgb(68, 68, 68);
+}
+
+.sidebar-link:hover{
+	color: #000;
+}
+
+.form-upload-label{
+	padding: 20px;
+	width: 300px;
+	border-radius: 20px;
+	background-color: #A2D2F4;
+	transition-duration: 0.5s;
+}
+
+.form-upload-label:hover{
+	background-color: #8EA7B9;
 }

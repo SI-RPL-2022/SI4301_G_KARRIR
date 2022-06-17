@@ -67,7 +67,11 @@
                         @csrf
                         <div class="modal-body">
                             <div class="text-center">
-                                <img src="{{ url('/asset/logo/profile.png') }}" class="mb-2 foto-profile" id="blah">
+                                @if (!auth()->user()->foto)
+                                    <img src="{{ url('/asset/logo/profile.png') }}" class="mb-2 foto-profile" id="prev">
+                                @else
+                                    <img src="{{ url('storage/' . auth()->user()->foto) }}" class="mb-2 foto-profile">
+                                @endif
                             </div>
                             <div class="text-center">
                                 <label for="imgInp">
@@ -99,8 +103,9 @@
                             <div class="mb-3">
                                 <select name="alamat" id="" class="form-select">
                                     <option selected disabled hidden>Lokasi</option>
-                                    <option value="Bandung">Bandung</option>
-                                    <option value="Jakarta">Jakarta</option>
+                                    <option value="Bandung" @if (auth()->user()->alamat == 'Bandung') selected @endif>Bandung
+                                    </option>
+                                    <option value="Jakarta" @if (auth()->user()->alamat == 'Jakarta') selected @endif>Jakarta</option>
                                 </select>
                             </div>
 
@@ -168,7 +173,7 @@
                     </div>
                     <div class="col px-5 mx-5">
                         @if (auth()->user()->cv)
-                            <p class="px-5 text-center"><a href="/download/resume">Resume/CV
+                            <p class="px-5 text-center"><a href="/download/resume/{{ auth()->user()->id }}">Resume/CV
                                     {{ auth()->user()->nama }}.pdf</a></p>
                         @else
                             <p class="px-5 text-center">80% perusahaan menganggap resume/CV sangat penting dalam lamaran
@@ -193,7 +198,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form action="/upload/resume" method="post" enctype="multipart/form-data">
+                                <form action="/upload/resume/{{ auth()->user()->id }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body text-center">
                                         <p>80% perusahaan menganggap resume/CV sangat penting dalam lamaran pekerjaan</p>
@@ -220,7 +225,7 @@
                     </div>
                     <div class="col px-5 mx-5">
                         @if (auth()->user()->organisasi)
-                            <p class="px-5 text-center"><a href="/download/organisasi">Pengalaman Organisasi
+                            <p class="px-5 text-center"><a href="/download/organisasi/{{ auth()->user()->id }}">Pengalaman Organisasi
                                     {{ auth()->user()->nama }}.pdf</a></p>
                         @else
                             <p class="px-5 text-center">apa kegiatan yang ingin kamu tunjukan ke perusahaan?</p>
@@ -243,7 +248,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form action="/upload/organisasi" method="post" enctype="multipart/form-data">
+                                <form action="/upload/organisasi/{{ auth()->user()->id }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body text-center">
                                         <p>apa kegiatan yang ingin kamu tunjukan ke perusahaan?</p>
@@ -271,7 +276,7 @@
                     </div>
                     <div class="col px-5 mx-5">
                         @if (auth()->user()->sertifikasi)
-                            <p class="px-5 text-center"><a href="/download/sertifikasi">Sertifikasi
+                            <p class="px-5 text-center"><a href="/download/sertifikasi/{{ auth()->user()->id }}">Sertifikasi
                                     {{ auth()->user()->nama }}.pdf</a></p>
                         @else
                             <p class="px-5 text-center">sertifikasi dapat sangat membantu kamu dalam melamar pekerjaan di
@@ -295,7 +300,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form action="/upload/sertifikasi" method="post" enctype="multipart/form-data">
+                                <form action="/upload/sertifikasi/{{ auth()->user()->id }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body text-center">
                                         <p>sertifikasi dapat sangat membantu kamu dalam melamar pekerjaan di
@@ -324,7 +329,7 @@
                     </div>
                     <div class="col px-5 mx-5">
                         @if (auth()->user()->portofolio)
-                            <p class="px-5 text-center"><a href="/download/portofolio">Portofolio
+                            <p class="px-5 text-center"><a href="/download/portofolio/{{ auth()->user()->id }}">Portofolio
                                     {{ auth()->user()->nama }}.pdf</a></p>
                         @else
                             <p class="px-5 text-center">portfolio apa yang kamu miliki untuk di tunjukan ke perusahaan?</p>
@@ -347,7 +352,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form action="/upload/portofolio" method="post" enctype="multipart/form-data">
+                                <form action="/upload/portofolio/{{ auth()->user()->id }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body text-center">
                                         <p>portfolio apa yang kamu miliki untuk di tunjukan ke perusahaan?</p>
@@ -385,43 +390,43 @@
 
 
         //upload resume
-        var fileInput = document.getElementById('up_resume');
-        var listFile = document.getElementById('preview_resume');
+        var fileResume = document.getElementById('up_resume');
+        var reviewResume = document.getElementById('preview_resume');
 
-        fileInput.onchange = function() {
+        fileResume.onchange = function() {
             var files = Array.from(this.files);
             files = files.map(file => file.name);
-            listFile.innerHTML = files.join('<br/>');
+            reviewResume.innerHTML = files.join('<br/>');
         }
 
         // Organisasi
-        var fileInput = document.getElementById('up_organisasi');
-        var listFile = document.getElementById('preview_organisasi');
+        var fileOrganisasi = document.getElementById('up_organisasi');
+        var previewOrganisai = document.getElementById('preview_organisasi');
 
-        fileInput.onchange = function() {
+        fileOrganisasi.onchange = function() {
             var files = Array.from(this.files);
             files = files.map(file => file.name);
-            listFile.innerHTML = files.join('<br/>');
+            previewOrganisai.innerHTML = files.join('<br/>');
         }
 
         // Sertifikasi
-        var fileInput = document.getElementById('up_sertifikasi');
-        var listFile = document.getElementById('preview_sertifikasi');
+        var fileSertifikasi = document.getElementById('up_sertifikasi');
+        var previewSertifikasi = document.getElementById('preview_sertifikasi');
 
-        fileInput.onchange = function() {
+        fileSertifikasi.onchange = function() {
             var files = Array.from(this.files);
             files = files.map(file => file.name);
-            listFile.innerHTML = files.join('<br/>');
+            previewSertifikasi.innerHTML = files.join('<br/>');
         }
 
         // portofolio
-        var fileInput = document.getElementById('up_portofolio');
-        var listFile = document.getElementById('preview_portofolio');
+        var filePortofolio = document.getElementById('up_portofolio');
+        var previewPortofolio = document.getElementById('preview_portofolio');
 
-        fileInput.onchange = function() {
+        filePortofolio.onchange = function() {
             var files = Array.from(this.files);
             files = files.map(file => file.name);
-            listFile.innerHTML = files.join('<br/>');
+            previewPortofolio.innerHTML = files.join('<br/>');
         }
     </script>
 @endsection

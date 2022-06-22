@@ -10,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -93,7 +94,7 @@ class UserController extends Controller
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
 
-                return redirect()->intended('/admin/notifikasi');
+                return redirect()->intended('/admin/dashboard');
             }
         }
 
@@ -185,6 +186,32 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login')->with('pesan', 'Akun anda sudah masuk tahap verifikasi, Mohon tunggu beberapa menit untuk lagi untuk login');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $perusahaan = Perusahaan::find($id);
+
+        $perusahaan->email = $request->email;
+        $perusahaan->telepon = $request->telepon;
+        $perusahaan->alamat = $request->alamat;
+        $perusahaan->industri = $request->industri;
+        $perusahaan->tentang_kami = $request->deskripsi;
+        $perusahaan->visi = $request->visi;
+        $perusahaan->misi = $request->misi;
+
+        if ($request->foto) {
+            
+            Storage::delete($perusahaan->foto);
+
+            $perusahaan->foto = $request->file('foto')->store('foto-perusahaan');
+
+        }
+
+
+        $perusahaan->save();
+
+        return back();
     }
 
     public function profile(Request $request)

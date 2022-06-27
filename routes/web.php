@@ -75,6 +75,7 @@ Route::middleware('verification')->group(function () {
         Route::get('/provider/rekrutmen', [ProviderController::class, 'rekrutmen']);
         Route::get('/provider/rekrutmen/{id}', [ProviderController::class, 'rekrutmen_detail']);
         Route::post('/provider/rekrutmen/lamaran/{id}', [ProviderController::class, 'rekrutmen_update']);
+<<<<<<< HEAD
 
         Route::get('/provider/profile', function () {
             return view('profile_provider');
@@ -85,8 +86,18 @@ Route::middleware('verification')->group(function () {
         
     });
 
+=======
 
 
+        Route::get('/provider/profile', function () {
+            return view('profile_provider');
+        });
+>>>>>>> f08ca85016260686bcd7b136fbf3e712878b35e0
+
+        
+    });
+
+<<<<<<< HEAD
     // Admin
 
     Route::get('/admin/dashboard', [AdminController::class, 'index']);
@@ -100,16 +111,29 @@ Route::middleware('verification')->group(function () {
     Route::get('/admin/pelamar', [AdminController::class, 'data_pelamar']);
     Route::get('/admin/lamaran/detail/{id}', [AdminController::class, 'detail_pelamar']);
 
+=======
+
+
+    // Admin
+>>>>>>> f08ca85016260686bcd7b136fbf3e712878b35e0
     Route::get('/admin/notifikasi', [AdminController::class, 'notifikasi']);
     Route::get('/admin/notifikasi/detail/{id}', [AdminController::class, 'detail_notifikasi']);
     Route::post('/admin/verifikasi/{id}', [AdminController::class, 'verifikasi']);
     Route::get('/admin/berita', [AdminController::class, 'berita']);
     Route::post('/admin/berita', [AdminController::class, 'tambahberita']);
+<<<<<<< HEAD
 });
 
 Route::get('/daftar/verifikasi', function () {
     return view('verifikasi');
 });
+=======
+});
+
+Route::get('/daftar/verifikasi', function () {
+    return view('verifikasi');
+});
+>>>>>>> f08ca85016260686bcd7b136fbf3e712878b35e0
 Route::post('/daftar/verifikasi/{id}', [UserController::class, 'verifikasi']);
 
 Route::get('/logout', [UserController::class, 'logout']);

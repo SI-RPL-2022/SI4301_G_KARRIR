@@ -170,7 +170,7 @@
         @endif
 
         @if ($lamaran->status == 'Tolak')
-            <p class="btn py-3 px-5 w-100 btn-danger fs-3"><i class="bi bi-x-circle-fill"></i> Pelamar Anda Terima</p>
+            <p class="btn py-3 px-5 w-100 btn-danger fs-3"><i class="bi bi-x-circle-fill"></i> Pelamar Anda Tolak</p>
         @endif
     </div>
 @endsection

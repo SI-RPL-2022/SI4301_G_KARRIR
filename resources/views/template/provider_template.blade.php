@@ -31,13 +31,12 @@
 							<a class="nav-link" href="#">Lowongan</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/karrir/login">Karrir</a>
+							<a class="nav-link" href="#">Karrir</a>
 						</li>
 					</ul>
 					<span class="navbar-text">
 						<ul class="navbar-nav fw-bold text-uppercase">
-							@isset($login)
-
+							@auth('perusahaan')
 							<li class="nav-item">
 								<a href="#" class="nav-link"><i class="bi bi-bell-fill"></i></a>
 							</li>
@@ -47,20 +46,23 @@
 										<i class="bi bi-person-circle"></i>
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end">
-										<li><a href="#" class="dropdown-item">Peofile</a></li>
-										<li><a href="/provider/login" class="dropdown-item" >Keluar</a></li>
+										<li><a href="/provider/profile" class="dropdown-item">Profile</a></li>
+										<li><a href="/logout" class="dropdown-item" >Keluar</a></li>
 									</ul>
 								</div>
 							</li>
 							@else
+							<li class="nav-item">
+								<a href="/daftar" class="nav-link">Daftar</a>
+							</li>
+							<li class="nav-item">
+								<a href="/login" class="nav-link">Masuk</a>
+							</li>
+							@endauth
 
-							<li class="nav-item">
-								<a href="/provider/daftar" class="nav-link">Daftar</a>
-							</li>
-							<li class="nav-item">
-								<a href="/provider/login" class="nav-link">Masuk</a>
-							</li>
-							@endisset
+							
+							
+							
 						</ul>
 					</span>
 				</div>

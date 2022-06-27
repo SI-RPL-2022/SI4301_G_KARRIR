@@ -8,10 +8,12 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    @yield('css')
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
+    
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
 
     <title>Karrir</title>
@@ -27,13 +29,13 @@
                 </div>
 
                 <ul class="list-group list-group-flush ">
-                    <li class="list-group-item border-0 bg-transparent mb-3 "><a href="#" class="sidebar-link"><i
+                    <li class="list-group-item border-0 bg-transparent mb-3 "><a href="/admin/dashboard" class="sidebar-link"><i
                                 class="bi bi-columns-gap"></i> Dashboard</a></li>
-                    <li class="list-group-item border-0 bg-transparent mb-3 "><a href="#" class="sidebar-link"><i
+                    <li class="list-group-item border-0 bg-transparent mb-3 "><a href="/admin/pelamar" class="sidebar-link"><i
                                 class="bi bi-person-lines-fill"></i> Pelamar Kerja</a></li>
-                    <li class="list-group-item border-0 bg-transparent mb-3 "><a href="#" class="sidebar-link"><i
+                    <li class="list-group-item border-0 bg-transparent mb-3 "><a href="/admin/perusahaan" class="sidebar-link"><i
                                 class="bi bi-building"></i> Perusahaan</a></li>
-                    <li class="list-group-item border-0 bg-transparent mb-3 "><a href="#" class="sidebar-link"><i
+                    <li class="list-group-item border-0 bg-transparent mb-3 "><a href="/admin/lowongan" class="sidebar-link"><i
                                 class="bi bi-briefcase"></i> Lowongan Pekerjaan</a></li>
                     <li class="list-group-item border-0 bg-transparent mb-3 "><a href="/admin/berita" class="sidebar-link"><i
                                 class="bi bi-newspaper"></i> Berita</a></li>
@@ -43,7 +45,7 @@
                                 class="bi bi-box-arrow-in-left"></i> Logout</a></li>
                 </ul>
             </div>
-            <div class="col-md-9 p-4">
+            <div class="col p-4">
                 @yield('content')
 
             </div>
@@ -55,7 +57,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-
+    
 </body>
 
 </html>

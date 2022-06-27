@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lamaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class UploadController extends Controller
 {
-    public function upload_resume(Request $request)
+    public function upload_resume(Request $request,$id)
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find($id);
 
         if ($user->cv != null) {
             Storage::delete($user->cv);
@@ -23,16 +24,16 @@ class UploadController extends Controller
         return back();
     }
 
-    public function download_resume()
+    public function download_resume($id)
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find($id);
 
         return Storage::download($user->cv);
     }
 
-    public function upload_organisasi(Request $request)
+    public function upload_organisasi(Request $request,$id)
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find($id);
 
         if ($user->organisasi != null) {
             Storage::delete($user->organisasi);
@@ -45,16 +46,16 @@ class UploadController extends Controller
         return back();
     }
 
-    public function download_organisasi()
+    public function download_organisasi($id)
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find($id);
 
         return Storage::download($user->organisasi);
     }
 
-    public function upload_sertifikasi(Request $request)
+    public function upload_sertifikasi(Request $request,$id)
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find($id);
 
         if ($user->sertifikasi != null) {
             Storage::delete($user->sertifikasi);
@@ -67,16 +68,16 @@ class UploadController extends Controller
         return back();
     }
 
-    public function download_sertifikasi()
+    public function download_sertifikasi($id)
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find($id);
 
         return Storage::download($user->sertifikasi);
     }
 
-    public function upload_portofolio(Request $request)
+    public function upload_portofolio(Request $request,$id)
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find($id);
 
         if ($user->portofolio != null) {
             Storage::delete($user->portofolio);
@@ -89,11 +90,18 @@ class UploadController extends Controller
         return back();
     }
 
-    public function download_portofolio()
+    public function download_portofolio($id)
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find($id);
 
         return Storage::download($user->portofolio);
+    }
+
+    public function download_dokumen($id)
+    {
+        $lamaran = Lamaran::find($id);
+
+        return Storage::download($lamaran->dokumen);
     }
 }   
 

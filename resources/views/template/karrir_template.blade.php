@@ -21,8 +21,8 @@
 
     <nav class="navbar navbar-expand-lg bg-primer">
         <div class="container-fluid">
-            @auth
-                <a class="navbar-brand" href="#"><img src="{{ URL::asset('asset/logo/nav_logo_karrir.png') }}"></a>
+            @auth('perusahaan')
+                <a class="navbar-brand" href="/"><img src="{{ URL::asset('asset/logo/nav_logo_provider.png') }}"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,17 +30,19 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto fw-bold text-uppercase">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Lowongan Pekerjaan</a>
+                            <a class="nav-link" href="/provider/rekrutmen">Rekrutmen</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">Perusahaan</a>
+                            <a class="nav-link" href="/provider/lowongan">Lowongan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Karrir</a>
                         </li>
                     </ul>
                     <span class="navbar-text">
                         <ul class="navbar-nav fw-bold text-uppercase">
-
                             <li class="nav-item">
-                                <a href="#" class="nav-link"><i class="bi bi-bell-fill"></i></a>
+                                <a href="/provider/notifikasi" class="nav-link"><i class="bi bi-bell-fill"></i></a>
                             </li>
                             <li class="nav-item">
                                 <div class="btn-group">
@@ -49,56 +51,54 @@
                                         <i class="bi bi-person-circle"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end">
-                                        <li><a href="/karrir/profile" class="dropdown-item">Peofile</a></li>
+                                        <li><a href="/provider/profile" class="dropdown-item">Profile</a></li>
                                         <li><a href="/logout" class="dropdown-item">Keluar</a></li>
                                     </ul>
                                 </div>
                             </li>
-                        @endauth
+                        @else
+                            @auth
+                                <a class="navbar-brand" href="/"><img
+                                        src="{{ URL::asset('asset/logo/nav_logo_karrir.png') }}"></a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav me-auto fw-bold text-uppercase">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/lowongan">Lowongan Pekerjaan</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Perusahaan</a>
+                                        </li>
+                                    </ul>
+                                    <span class="navbar-text">
+                                        <ul class="navbar-nav fw-bold text-uppercase">
 
-                        @auth('perusahaan')
-                            <a class="navbar-brand" href="#"><img
-                                    src="{{ URL::asset('asset/logo/nav_logo_provider.png') }}"></a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav me-auto fw-bold text-uppercase">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/">Rekrutmen</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/provider">Lowongan</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Karrir</a>
-                                    </li>
-                                </ul>
-                                <span class="navbar-text">
-                                    <ul class="navbar-nav fw-bold text-uppercase">
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link"><i class="bi bi-bell-fill"></i></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <div class="btn-group">
-                                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                                                    data-bs-display="static" aria-expanded="false">
-                                                    <i class="bi bi-person-circle"></i>
-                                                </a>
-                                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end">
-                                                    <li><a href="/provider/profile" class="dropdown-item">Profile</a></li>
-                                                    <li><a href="/logout" class="dropdown-item">Keluar</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
+                                            <li class="nav-item">
+                                                <a href="/karrir/notifikasi" class="nav-link"><i class="bi bi-bell-fill"></i></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <div class="btn-group">
+                                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                                                        data-bs-display="static" aria-expanded="false">
+                                                        <i class="bi bi-person-circle"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end">
+                                                        <li><a href="/karrir/profile" class="dropdown-item">Peofile</a></li>
+                                                        <li><a href="/logout" class="dropdown-item">Keluar</a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        @endauth
                                     @endauth
 
 
                                     @guest('web')
                                         @guest('perusahaan')
-                                            <a class="navbar-brand" href="#"><img
+                                            <a class="navbar-brand" href="/"><img
                                                     src="{{ URL::asset('asset/logo/nav_logo_karrir.png') }}"></a>
                                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -108,10 +108,10 @@
                                             <div class="collapse navbar-collapse" id="navbarNav">
                                                 <ul class="navbar-nav me-auto fw-bold text-uppercase">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Lowongan Pekerjaan</a>
+                                                        <a class="nav-link" href="/lowongan">Lowongan Pekerjaan</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="/login">Perusahaan</a>
+                                                        <a class="nav-link" href="#">Perusahaan</a>
                                                     </li>
                                                 </ul>
                                                 <span class="navbar-text">

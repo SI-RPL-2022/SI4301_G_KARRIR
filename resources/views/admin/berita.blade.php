@@ -5,18 +5,27 @@
         <h3>Berita</h3>
     </div>
 
-    <div class="bg-white p-3 w-100 mb-3">
+    <div class="bg-white p-3 w-100 mb-3" style="height: 250px">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner px-5">
                 <div class="carousel-item active">
                     <img src="{{ asset('asset/logo/berita.png') }}" class="d-block w-100" alt="...">
                 </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('asset/logo/berita.png') }}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('asset/logo/berita.png') }}" class="d-block w-100" alt="...">
-                </div>
+                @foreach ($berita as $data)
+                    <div class="carousel-item">
+                        <a href="{{ $data->link }}" class="link-dark text-decoration-none" target="_blank">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="{{ asset('storage/' . $data->foto) }}" class="img-fluid" alt="...">
+                                </div>
+                                <div class="col">
+                                    <h3>{{ $data->judul }}</h3>
+                                    <p>{{ $data->deskripsi }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="prev">
@@ -37,7 +46,8 @@
                 <div class="mb-3">
                     <h3>Tambah Berita</h3>
                 </div>
-                <form action="#" class="form-login">
+                <form action="/admin/berita" method="POST" class="form-login" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-3">
 
                         <input type="text" name="nama" id="nama" class="form-control" placeholder="Judul Berita">
@@ -50,20 +60,18 @@
 
                     <div class="mb-3">
 
-                        <textarea name="deskripsi" id="" class="form-control" rows="3" placeholder="Tesxt Berita"></textarea>
+                        <textarea name="deskripsi" id="" class="form-control" rows="3" placeholder="Text Berita"></textarea>
                     </div>
 
-                    <div class="mb-3">
-
-                        <input type="file" class="form-control">
+                    <div class="mb-3 text-start">
+                        <label for="foto" class="form-label">Foto Berita</label>
+                        <input type="file" class="form-control" name="foto" id="foto">
                     </div>
 
 
                     <div class="d-flex justify-content-center">
-                        <button type="submit" name="tolak" value="yes"
-                            class="btn btn-primer px-5 py-3 mx-5 bg-danger">Tolak</button>
-                        <button type="submit" name="konfirmasi" value="yes"
-                            class="btn btn-primer px-5 py-3 mx-5">Konfirmasi</button>
+                        <button type="reset" class="btn btn-primer px-5 py-3 mx-5 bg-danger">Batal</button>
+                        <button type="submit" class="btn btn-primer px-5 py-3 mx-5">Submit</button>
 
                     </div>
                 </form>
